@@ -25,6 +25,7 @@
 class QGV_LIB_DECL QGVLayerTiles : public QGVLayer
 {
     Q_OBJECT
+    friend class GisMap;
 
 public:
     QGVLayerTiles();

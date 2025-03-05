@@ -36,7 +36,7 @@ public:
     QGV::ItemFlags getFlags() const;
     bool isFlag(QGV::ItemFlag flag) const;
 
-    void refresh();
+    virtual void refresh();
     void repaint();
     void resetBoundary();
     QTransform effectiveTransform() const;
