@@ -55,14 +55,21 @@ QGVMapQGView::QGVMapQGView(QGVMap* geoMap)
     mSelectionRect.reset(new QGVMapRubberBand(this));
     mSelectionRect->setMinSelection(QSize(5, 5));
     mContextMenu.reset(new QMenu(this));
+
+    mQGScene->setItemIndexMethod(QGraphicsScene::NoIndex);
+
     setScene(mQGScene.data());
     setContextMenuPolicy(Qt::NoContextMenu);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setOptimizationFlag(DontSavePainterState, true);
     setOptimizationFlag(DontAdjustForAntialiasing, true);
-    setViewportUpdateMode(QGraphicsView::SmartViewportUpdate);
-    setRenderHint(QPainter::Antialiasing, true);
+    //setViewportUpdateMode(QGraphicsView::SmartViewportUpdate);
+    setViewportUpdateMode(QGraphicsView::MinimalViewportUpdate);
+    setRenderHint(QPainter::Antialiasing, false);
+    setRenderHint(QPainter::TextAntialiasing, false);
+    setRenderHint(QPainter::SmoothPixmapTransform, false);
+    setRenderHint(QPainter::LosslessImageRendering, false);
     setCacheMode(QGraphicsView::CacheBackground);
     setMouseTracking(true);
     setBackgroundBrush(QBrush(Qt::lightGray));

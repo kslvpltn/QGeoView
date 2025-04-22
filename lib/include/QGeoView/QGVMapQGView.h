@@ -43,7 +43,7 @@ public:
     void setMouseActions(QGV::MouseActions actions);
     QGV::MouseActions getMouseActions() const;
 
-    QGVCameraState getCamera() const;
+    inline QGVCameraState getCamera() const;
     void cameraTo(const QGVCameraActions& actions, bool animation);
     double getMinScale() const;
     double getMaxScale() const;

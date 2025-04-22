@@ -108,6 +108,8 @@ int QGVItem::countItems() const
 
 QGVItem* QGVItem::getItem(int index) const
 {
+    if(mChildrens.size() <= index)
+        return nullptr;
     return mChildrens.at(index);
 }
 

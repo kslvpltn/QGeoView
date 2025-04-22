@@ -39,7 +39,7 @@ public:
     explicit QGVMap(QWidget* parent = 0);
     ~QGVMap();
 
-    const QGVCameraState getCamera() const;
+    inline const QGVCameraState getCamera() const;
     void cameraTo(const QGVCameraActions& actions, bool animation = false);
     void flyTo(const QGVCameraActions& actions);
 

@@ -22,6 +22,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 #include <QPalette>
+#include <QStyleOptionGraphicsItem>
 
 QGVMapQGItem::QGVMapQGItem(QGVDrawItem* geoObject)
 {
@@ -45,8 +46,9 @@ QRectF QGVMapQGItem::boundingRect() const
     return mGeoObject->projShape().boundingRect();
 }
 
-void QGVMapQGItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
+void QGVMapQGItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* /*widget*/)
 {
+    painter->setClipRect(option->exposedRect);
     mGeoObject->projPaint(painter);
 
     if (mGeoObject->isSelected() && !mGeoObject->isFlag(QGV::ItemFlag::SelectCustom)) {
