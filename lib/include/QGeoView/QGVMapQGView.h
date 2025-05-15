@@ -49,6 +49,7 @@ public:
     double getMaxScale() const;
     void setScaleLimits(double minScale, double maxScale);
     void cleanState();
+    void setFlyOnMouseZoomRect(bool enabled);
 
 Q_SIGNALS:
     void dropData(QPointF position, const QMimeData* dropData);
@@ -103,6 +104,7 @@ private:
     double mMaxScale;
     double mScale;
     double mAzimuth;
+    bool mFlyOnMouseZoomRect {true};
     QGV::MouseActions mMouseActions;
     QRect mViewRect;
     QGV::MapState mState;

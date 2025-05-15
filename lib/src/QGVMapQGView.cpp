@@ -364,10 +364,17 @@ void QGVMapQGView::zoomArea(QMouseEvent* event, QRect areaRect)
     const QRectF oldProjRect = oldState.projRect();
     const double scaleFactor =
             qMin(qAbs(oldProjRect.width() / newProjRect.width()), qAbs(oldProjRect.height() / newProjRect.height()));
-    auto fly =
-            new QGVCameraSimpleAnimation(QGVCameraActions(mGeoMap).scaleBy(scaleFactor).moveTo(newProjRect.center()));
-    fly->setDuration(1500);
-    fly->start(QAbstractAnimation::DeleteWhenStopped);
+    if(1) {
+        auto fly =
+                new QGVCameraActions(QGVCameraActions(mGeoMap).scaleBy(scaleFactor).moveTo(newProjRect.center()));
+        cameraTo(*fly, false);
+
+    } else {
+        auto fly =
+                new QGVCameraSimpleAnimation(QGVCameraActions(mGeoMap).scaleBy(scaleFactor).moveTo(newProjRect.center()));
+        fly->setDuration(1500);
+        fly->start(QAbstractAnimation::DeleteWhenStopped);
+    }
 }
 
 void QGVMapQGView::selectObjectsByRect(QMouseEvent* event, QRect selRect)
@@ -632,4 +639,10 @@ void QGVMapQGView::dropEvent(QDropEvent* event)
 void QGVMapQGView::dragLeaveEvent(QDragLeaveEvent* event)
 {
     event->accept();
+}
+
+void QGVMapQGView::setFlyOnMouseZoomRect(bool enabled)
+{
+    mFlyOnMouseZoomRect = enabled;
+
 }
