@@ -17,6 +17,7 @@
  ****************************************************************************/
 
 #include "QGVMap.h"
+#include "QGVDrawItem.h"
 #include "QGVItem.h"
 #include "QGVMapQGItem.h"
 #include "QGVMapQGView.h"
@@ -241,6 +242,9 @@ QList<QGVDrawItem*> QGVMap::search(const QPointF& projPos, Qt::ItemSelectionMode
         if (geoObject)
             result << geoObject;
     }
+    std::sort(result.begin(), result.end(), [](const QGVDrawItem* i1, const QGVDrawItem* i2) {
+        return (i1->getZValue() > i2->getZValue());
+    });
     return result;
 }
 
@@ -252,6 +256,9 @@ QList<QGVDrawItem*> QGVMap::search(const QRectF& projRect, Qt::ItemSelectionMode
         if (geoObject)
             result << geoObject;
     }
+    std::sort(result.begin(), result.end(), [](const QGVDrawItem* i1, const QGVDrawItem* i2) {
+        return (i1->getZValue() > i2->getZValue());
+    });
     return result;
 }
 
@@ -263,6 +270,9 @@ QList<QGVDrawItem*> QGVMap::search(const QPolygonF& projPolygon, Qt::ItemSelecti
         if (geoObject)
             result << geoObject;
     }
+    std::sort(result.begin(), result.end(), [](const QGVDrawItem* i1, const QGVDrawItem* i2) {
+        return (i1->getZValue() > i2->getZValue());
+    });
     return result;
 }
 
